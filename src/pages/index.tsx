@@ -32,6 +32,7 @@ export default function Home() {
           </div>
           <div>
             <GameweekWinner />
+
             {mostTransferredPlayer && mostTranferredPlayerPhoto && (
               <TransferCaptainStat
                 title="Most Transferred Player"
@@ -39,6 +40,7 @@ export default function Home() {
                 image_id={mostTranferredPlayerPhoto}
               />
             )}
+
             {mostCaptainedPlayer && mostCaptainedPlayerPhoto && (
               <TransferCaptainStat
                 title="Most Captained Player"
