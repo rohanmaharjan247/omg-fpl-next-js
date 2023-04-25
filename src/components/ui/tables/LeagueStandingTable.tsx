@@ -25,8 +25,10 @@ const LeagueStandingTable = ({ leagueStandings }: LeagueStandingProps) => {
               <h2 className="font-bold">{leagueStanding.entry_name}</h2>
               <p className="font-light text-sm">{leagueStanding.player_name}</p>
             </td>
-            <td className="text-center">{leagueStanding.event_total}</td>
-            <td className="text-center">{leagueStanding.total}</td>
+            <td className="text-center font-light">
+              {leagueStanding.event_total}
+            </td>
+            <td className="text-center font-light">{leagueStanding.total}</td>
           </tr>
         ))}
       </tbody>
