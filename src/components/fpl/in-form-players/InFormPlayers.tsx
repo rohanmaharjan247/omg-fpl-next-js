@@ -10,7 +10,6 @@ const InFormPlayers = () => {
   useEffect(() => {
     const fetchInFormPlayers = async () => {
       const { data } = await axios.get<InFormPlayers[]>('/api/in-form-players');
-      console.log('🚀 --> fetchInFormPlayers --> data:', data);
 
       setInFormPlayers(data);
     };
@@ -39,7 +38,7 @@ const InFormPlayers = () => {
             <h1 className="">{player.web_name}</h1>
             <h2 className="text-sm font-light">{player.team_name}</h2>
           </div>
-          <div className="shrink-0 text-sm text-center bg-secondary text-slate-100 w-8 py-1">
+          <div className="shrink-0 text-sm text-center bg-secondary text-slate-100 w-9 py-1 rounded-lg">
             {player.form}
           </div>
         </div>
