@@ -2,12 +2,25 @@ import {
   CurrentGameweek,
   GameweekWinner,
   HeadTitle,
+  InFormPlayers,
   LeagueStandings,
+  TransferCaptainStat,
 } from '@/components';
+import { useLeagueInfo } from '@/helpers/league-info-context';
 
 import Image from 'next/image';
 
 export default function Home() {
+  const { generalInfo, currentGameweek } = useLeagueInfo();
+
+  const mostTransferredPlayer = generalInfo?.elements?.find(
+    (x) => x.id === currentGameweek?.most_transferred_in
+  );
+  const mostTranferredPlayerPhoto = mostTransferredPlayer?.photo.split('.')[0];
+  const mostCaptainedPlayer = generalInfo?.elements?.find(
+    (x) => x.id === currentGameweek?.most_captained
+  );
+  const mostCaptainedPlayerPhoto = mostCaptainedPlayer?.photo.split('.')[0];
   return (
     <>
       <HeadTitle title="Home" />
@@ -19,25 +32,22 @@ export default function Home() {
           </div>
           <div>
             <GameweekWinner />
+            {mostTransferredPlayer && mostTranferredPlayerPhoto && (
+              <TransferCaptainStat
+                title="Most Transferred Player"
+                player_name={`${mostTransferredPlayer.first_name} ${mostTransferredPlayer.second_name}`}
+                image_id={mostTranferredPlayerPhoto}
+              />
+            )}
+            {mostCaptainedPlayer && mostCaptainedPlayerPhoto && (
+              <TransferCaptainStat
+                title="Most Captained Player"
+                player_name={`${mostCaptainedPlayer.first_name} ${mostCaptainedPlayer.second_name}`}
+                image_id={mostCaptainedPlayerPhoto}
+              />
+            )}
             <div className="card">
-              <div className="flex items-center gap-4">
-                <div className="shrink-0 relative w-16 h-20">
-                  <Image
-                    src={
-                      'https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png'
-                    }
-                    alt={'Erling Haaland'}
-                    fill
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="grow">
-                  <h3 className="text-sm font-light">
-                    Most Transferred Player
-                  </h3>
-                  <h1 className="text-xl font-bold">Erling Haaland</h1>
-                </div>
-              </div>
+              <InFormPlayers />
             </div>
           </div>
         </div>

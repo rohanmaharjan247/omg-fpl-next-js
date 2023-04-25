@@ -34,3 +34,14 @@ export async function getCurrentGameweek() {
 
   return gameWeek;
 }
+
+export async function getInFormPlayers() {
+  let inFormPlayers = (await fetchBootstrap()).elements;
+  inFormPlayers.sort((a, b) => Number(b.form) - Number(a.form));
+  inFormPlayers = inFormPlayers.splice(0, 10);
+  return Promise.all(inFormPlayers);
+}
+export async function getPLTeams() {
+  let teams = (await fetchBootstrap()).teams;
+  return Promise.all(teams);
+}
