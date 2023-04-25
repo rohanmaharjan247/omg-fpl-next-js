@@ -1,0 +1,4 @@
+.league_table > thead > tr > th,
+.league_table > tbody > tr > td {
+  @apply px-6 py-2;
+}
