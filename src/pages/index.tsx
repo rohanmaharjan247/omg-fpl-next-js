@@ -11,7 +11,7 @@ import { useLeagueInfo } from '@/helpers/league-info-context';
 import Image from 'next/image';
 
 export default function Home() {
-  const { generalInfo, currentGameweek } = useLeagueInfo();
+  const { generalInfo, currentGameweek, leagueInfo } = useLeagueInfo();
 
   const mostTransferredPlayer = generalInfo?.elements?.find(
     (x) => x.id === currentGameweek?.most_transferred_in

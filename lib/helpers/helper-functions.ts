@@ -20,8 +20,12 @@ async function playerData(
   return classicLeagueEntry;
 }
 
-export async function getClassicLeagueStandings() {
-  const classicLeague = await fetchClassicLeague(LEAGUE_ID);
+export async function getClassicLeagueStandings(phase: number) {
+  const classicLeague = await fetchClassicLeague(LEAGUE_ID, {
+    pageNewEntries: 1,
+    pageStandings: 1,
+    phase: phase,
+  });
   const leagueStandings = classicLeague.standings.results.map(
     async (m) => await playerData(m.entry, m)
   );

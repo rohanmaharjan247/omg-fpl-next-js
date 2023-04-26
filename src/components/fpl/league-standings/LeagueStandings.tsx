@@ -13,7 +13,8 @@ const LeagueStandings = () => {
   useEffect(() => {
     const fetchLeagueStandings = async () => {
       const { data } = await axios.get<ClassicLeagueEntry[]>(
-        '/api/league-standings'
+        '/api/league-standings',
+        { params: { phase: 1 } }
       );
 
       setLeagueStanding(data);
@@ -23,7 +24,7 @@ const LeagueStandings = () => {
 
   return (
     <div className="card">
-      <h1 className="text-2xl font-bold">{leagueInfo?.name} Standings</h1>
+      <h1 className="header">{leagueInfo?.name} Standings</h1>
       <LeagueStandingTable leagueStandings={leagueStanding} />
     </div>
   );

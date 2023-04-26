@@ -1,8 +1,10 @@
 import { LeagueStandingProps } from '@/helpers/props';
 import styles from './styles/LeagueStandingTable.module.css';
 import { ClassicLeagueEntry } from 'fpl-api';
+import { useLeagueInfo } from '@/helpers/league-info-context';
 
 const LeagueStandingTable = ({ leagueStandings }: LeagueStandingProps) => {
+  const { currentGameweek } = useLeagueInfo();
   return (
     <table className={`table-auto w-full my-2 ${styles.league_table}`}>
       <thead className="bg-gradient-to-r from-secondary to-tertiary text-slate-100">
@@ -13,7 +15,7 @@ const LeagueStandingTable = ({ leagueStandings }: LeagueStandingProps) => {
           <th scope="col" className="text-left">
             Team & Manager
           </th>
-          <th scope="col">GW</th>
+          <th scope="col">GW {currentGameweek?.id}</th>
           <th scope="col">Pts</th>
         </tr>
       </thead>

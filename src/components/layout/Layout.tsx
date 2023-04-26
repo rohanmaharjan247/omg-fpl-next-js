@@ -5,6 +5,7 @@ import { LeagueInfoContext } from '@/helpers/league-info-context';
 import { useEffect, useState } from 'react';
 import { Bootstrap, ClassicLeagueInfo, Event } from 'fpl-api';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const poppins = Poppins({
   subsets: ['latin'],

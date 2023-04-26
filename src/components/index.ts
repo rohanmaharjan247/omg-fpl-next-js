@@ -5,3 +5,5 @@ export { default as LeagueStandings } from './fpl/league-standings/LeagueStandin
 export { default as GameweekWinner } from './fpl/gameweek-winner/GameweekWinner';
 export { default as TransferCaptainStat } from './fpl/transfer-captain-stat/TransferCaptainStat';
 export { default as InFormPlayers } from './fpl/in-form-players/InFormPlayers';
+export { default as H2HStandings } from './fpl/h2h-standings/H2HStandings';
+export { default as H2HMatches } from './fpl/h2h-matches/H2HMatches';
