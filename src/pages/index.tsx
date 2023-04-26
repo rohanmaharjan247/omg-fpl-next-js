@@ -8,8 +8,6 @@ import {
 } from '@/components';
 import { useLeagueInfo } from '@/helpers/league-info-context';
 
-import Image from 'next/image';
-
 export default function Home() {
   const { generalInfo, currentGameweek, leagueInfo } = useLeagueInfo();
 
