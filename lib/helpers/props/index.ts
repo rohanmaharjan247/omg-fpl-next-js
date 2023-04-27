@@ -6,3 +6,5 @@ export * from './league-info-context-props';
 export * from './transfter-captain-stat-props';
 export * from './h2h-standings-props';
 export * from './h2h-matches-props';
+export * from './profile-form-props';
+export * from './manager-detail-props';
