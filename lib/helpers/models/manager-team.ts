@@ -14,4 +14,5 @@ export interface ManagerTeam {
   is_captain?: boolean;
   is_vice_captain?: boolean;
   in_team: 'regular' | 'substitute';
+  photo: string;
 }

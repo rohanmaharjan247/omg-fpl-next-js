@@ -22,17 +22,12 @@ const ManagerDetail = ({
       .from('qr-codes')
       .createSignedUrl(qrCode, 60 * 24, { transform: { quality: 75 } });
 
-    console.log(data);
     setQrCodeUrl(data?.signedUrl ?? '');
   };
 
   useEffect(() => {
     if (qr_code_url) {
       fetchSignedUrl(qr_code_url);
-
-      // console.log(publicUrl);
-
-      // setQrCodeUrl(publicUrl);
     }
   }, []);
 

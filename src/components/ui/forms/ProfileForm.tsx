@@ -23,8 +23,6 @@ const ProfileForm = ({ user }: ProfileFormProps) => {
     if (!e.target.files) {
       return;
     }
-
-    console.log(e.target.files.length);
     if (e.target.files.length <= 0) {
       return;
     }
@@ -45,14 +43,12 @@ const ProfileForm = ({ user }: ProfileFormProps) => {
 
     const filePath = `${userData?.name.replace(' ', '-')}/${fileName}`;
 
-    console.log(fileName, filePath);
     const upload = await supabaseClient.storage
       .from('qr-codes')
       .upload(filePath, file, {
         cacheControl: '3600',
         upsert: true,
       });
-    console.log('data', upload.data);
     if (upload.error) {
       console.error(upload.error);
       return;
@@ -61,15 +57,11 @@ const ProfileForm = ({ user }: ProfileFormProps) => {
     values.qr_code_url = upload.data.path;
     values.user_id = user?.id ?? '';
 
-    console.log(values);
-
     const savedData = await supabaseClient.from('user_profile').insert(values);
 
     if (savedData.error) {
       console.error(savedData.error);
     }
-
-    console.log(savedData.data);
   };
 
   return (
@@ -92,7 +84,6 @@ const ProfileForm = ({ user }: ProfileFormProps) => {
           id="esewa"
           ref={inputFileRef}
           onChange={(e) => {
-            console.log('changed', e);
             handleUploadFiles(e);
           }}
         />
