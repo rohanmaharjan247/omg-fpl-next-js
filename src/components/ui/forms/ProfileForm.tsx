@@ -16,9 +16,6 @@ const ProfileForm = ({ user }: ProfileFormProps) => {
   const [file, setFile] = useState<File>();
 
   const openFileSelector = () => {
-    // const publicUrl = supabaseClient.storage
-    //   .from('qr-codes')
-    //   .getPublicUrl('Rohan-Maharjan/Rohan-Maharjan-Esewa.JPG');
     inputFileRef.current?.click();
   };
 
@@ -90,13 +87,6 @@ const ProfileForm = ({ user }: ProfileFormProps) => {
         <small className="text-xs -mt-1">
           Note: You can find your code in ...
         </small>
-
-        <div
-          className="w-full h-64 border border-primary grid place-content-center my-4 cursor-pointer"
-          onClick={openFileSelector}
-        >
-          Upload you esewa or khalti QR Code
-        </div>
         <input
           type="file"
           id="esewa"
@@ -105,7 +95,6 @@ const ProfileForm = ({ user }: ProfileFormProps) => {
             console.log('changed', e);
             handleUploadFiles(e);
           }}
-          hidden
         />
         <button
           type="submit"

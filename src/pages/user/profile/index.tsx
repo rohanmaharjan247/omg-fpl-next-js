@@ -1,4 +1,9 @@
-import { HeadTitle, ManagerDetail, ProfileForm } from '@/components';
+import {
+  HeadTitle,
+  ManagerDetail,
+  ManagerTeam,
+  ProfileForm,
+} from '@/components';
 import { useLeagueInfo } from '@/helpers/league-info-context';
 import { UserProfile } from '@/helpers/models';
 import { faQrcode } from '@fortawesome/free-solid-svg-icons';
@@ -38,47 +43,45 @@ const Profile = () => {
 
     setProfile(data);
   };
-  const fetchUserProfile = async () => {
-    if (profile) {
-      const { data: manager } = await axios.get<Entry>('/api/manager-detail', {
-        params: { entry: profile.entry_code },
-      });
+  const fetchUserProfile = async (profile: UserProfile) => {
+    const { data: manager } = await axios.get<Entry>('/api/manager-detail', {
+      params: { entry: profile.entry_code },
+    });
 
-      const favoriteTeamCode = generalInfo?.teams.find(
-        (x) => x.id === manager.favourite_team
-      )?.code;
-      setFavoriteTeamCode(favoriteTeamCode);
-      console.log(manager);
-      setManager(manager);
-    }
+    const favoriteTeamCode = generalInfo?.teams.find(
+      (x) => x.id === manager.favourite_team
+    )?.code;
+    setFavoriteTeamCode(favoriteTeamCode);
+    console.log(manager);
+    setManager(manager);
   };
-  const fetchUserTeam = async () => {
-    if (profile) {
-      const { data: managerTeam } = await axios.get<EntryEvent>(
-        '/api/manager-team',
-        {
-          params: {
-            managerId: profile.entry_code,
-            eventId: currentGameweek?.id,
-          },
-        }
-      );
-      console.log(managerTeam);
-      setManagerTeam(managerTeam);
-    }
+  const fetchUserTeam = async (profile: UserProfile) => {
+    const { data: managerTeam } = await axios.get<EntryEvent>(
+      '/api/manager-team',
+      {
+        params: {
+          managerId: profile.entry_code,
+          eventId: currentGameweek?.id,
+        },
+      }
+    );
+    console.log(managerTeam);
+    setManagerTeam(managerTeam);
   };
 
   useEffect(() => {
     getUserData();
-    fetchUserProfile();
-    fetchUserTeam();
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     if (!user) {
       router.push('/login');
     }
-  }, [user]);
+    if (profile) {
+      fetchUserProfile(profile);
+      fetchUserTeam(profile);
+    }
+  }, [user, profile]);
 
   if (!user) {
     return;
@@ -99,6 +102,7 @@ const Profile = () => {
                 currentGameweek={currentGameweek}
                 favoriteTeamCode={favoriteTeamCode}
                 manager={manager}
+                qr_code_url={profile?.qr_code_url}
               />
             ) : (
               <ProfileForm user={user} />
@@ -106,7 +110,12 @@ const Profile = () => {
           </div>
         </div>
         <div className="col-span-2">
-          <div className="card">Team and all</div>
+          <div className="card">
+            Team and all
+            <div>
+              {managerTeam && <ManagerTeam managerTeam={managerTeam} />}
+            </div>
+          </div>
         </div>
       </div>
     </>

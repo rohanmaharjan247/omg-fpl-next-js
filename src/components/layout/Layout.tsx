@@ -6,12 +6,7 @@ import { useEffect, useState } from 'react';
 import { Bootstrap, ClassicLeagueInfo, Event } from 'fpl-api';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '700', '900'],
-  variable: '--font-poppins',
-});
+import { poppins } from '@/helpers';
 
 const Layout = ({ children }: LayoutProps) => {
   const [info, setInfo] = useState<ClassicLeagueInfo>();

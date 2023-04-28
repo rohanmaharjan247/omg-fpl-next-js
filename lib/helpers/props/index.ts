@@ -8,3 +8,4 @@ export * from './h2h-standings-props';
 export * from './h2h-matches-props';
 export * from './profile-form-props';
 export * from './manager-detail-props';
+export * from './manager-team-props';
