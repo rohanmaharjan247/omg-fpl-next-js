@@ -28,19 +28,19 @@ const CurrentGameweek = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <CurrentGameweekCard
           title="Highest Score"
-          stats={currentGameweek?.highest_score?.toLocaleString() ?? ''}
+          stats={currentGameweek?.highest_score?.toLocaleString() ?? '0'}
           icon={faHashtag}
           bgColor="bg-primary"
         />
         <CurrentGameweekCard
           title="Average Score"
-          stats={currentGameweek?.average_entry_score?.toLocaleString() ?? ''}
+          stats={currentGameweek?.average_entry_score?.toLocaleString() ?? '0'}
           icon={faGauge}
           bgColor="bg-secondary"
         />
         <CurrentGameweekCard
           title="Transfer Made"
-          stats={currentGameweek?.transfers_made?.toLocaleString() ?? ''}
+          stats={currentGameweek?.transfers_made?.toLocaleString() ?? '0'}
           icon={faRightLeft}
           bgColor="bg-tertiary"
         />

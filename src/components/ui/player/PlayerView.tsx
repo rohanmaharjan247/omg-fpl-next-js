@@ -17,7 +17,17 @@ const PlayerView = ({ managerTeam }: PlayerViewProps) => {
       </div>
       <div className="flex flex-col w-28">
         <h1 className="text-sm font-bold bg-tertiary text-slate-100 text-center">
-          {managerTeam.playerName}
+          {managerTeam.playerName}{' '}
+          {(managerTeam.is_captain && (
+            <span className="rounded-full bg-slate-200 text-slate-800 px-1 ml-1">
+              C
+            </span>
+          )) ||
+            (managerTeam?.is_vice_captain && (
+              <span className="rounded-full bg-slate-200 text-slate-800 px-1 ml-1">
+                V
+              </span>
+            ))}
         </h1>
         <h2 className="text-sm bg-gray-300  text-center">
           {managerTeam.points}

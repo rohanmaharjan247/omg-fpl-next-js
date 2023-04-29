@@ -78,7 +78,7 @@ const ManagerDetail = ({
           </div>
           <div className="text-center text-sm">
             <h2 className="font-bold">Overall Rank</h2>
-            <h3>{manager?.summary_overall_rank}</h3>
+            <h3>{manager?.summary_overall_rank?.toLocaleString()}</h3>
           </div>
         </div>
       </div>
