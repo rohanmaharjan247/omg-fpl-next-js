@@ -49,7 +49,9 @@ const ManagerTeam = ({ managerTeam }: ManagerTeamProps) => {
         id: player?.id,
         minutesPlayed: player?.minutes,
         playerName: player?.web_name,
-        points: player?.event_points,
+        points: team?.is_captain
+          ? (player?.event_points ?? 0) * team?.multiplier
+          : player?.event_points,
         redCards: player?.red_cards,
         yellowCards: player?.yellow_cards,
         photo: player?.photo ?? '',
