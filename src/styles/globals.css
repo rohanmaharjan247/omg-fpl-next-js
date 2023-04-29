@@ -6,6 +6,11 @@ body {
   @apply bg-gray-100;
 }
 
+.image {
+  background-image: url('/images/field.webp');
+  background-size: cover;
+}
+
 @layer base {
   form input {
     @apply my-1;

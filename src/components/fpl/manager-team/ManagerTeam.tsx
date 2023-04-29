@@ -89,7 +89,7 @@ const ManagerTeam = ({ managerTeam }: ManagerTeamProps) => {
   return (
     <>
       {team && (
-        <>
+        <div className="image">
           <div className={pitchGrid[team.regular.GKP.length]}>
             {team.regular.GKP.map((t) => (
               <PlayerView key={t.id} managerTeam={t} />
@@ -110,17 +110,17 @@ const ManagerTeam = ({ managerTeam }: ManagerTeamProps) => {
               <PlayerView key={t.id} managerTeam={t} />
             ))}
           </div>
-        </>
+        </div>
       )}
       <div className="h-1 bg-gray-100 w-full"></div>
       {subTeam && (
-        <>
+        <div className="bg-green-300 rounded">
           <div className="grid grid-cols-4 gap-4 py-6">
             {subTeam.substitute.map((team) => (
               <SubPlayerView key={team.id} managerTeam={team} />
             ))}
           </div>
-        </>
+        </div>
       )}
     </>
   );
