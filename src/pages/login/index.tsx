@@ -5,6 +5,10 @@ import { ThemeSupa } from '@supabase/auth-ui-shared';
 
 const Login = () => {
   const supabaseClient = useSupabaseClient();
+  const redirect =
+    process.env.NODE_ENV === 'production'
+      ? 'https://fpl-omg.vercel.app/'
+      : 'http://localhost:3000';
   return (
     <>
       <HeadTitle title="Login" />
@@ -14,7 +18,7 @@ const Login = () => {
             supabaseClient={supabaseClient}
             appearance={{ theme: ThemeSupa }}
             providers={['google']}
-            redirectTo="http://localhost:3000"
+            redirectTo={redirect}
           />
         </div>
       </div>
