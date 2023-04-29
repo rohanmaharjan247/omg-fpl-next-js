@@ -10,3 +10,4 @@ export { default as H2HMatches } from './fpl/h2h-matches/H2HMatches';
 export { default as ProfileForm } from './ui/forms/ProfileForm';
 export { default as ManagerDetail } from './fpl/manager-detail/ManagerDetail';
 export { default as ManagerTeam } from './fpl/manager-team/ManagerTeam';
+export { default as ManagerTeamDetail } from './fpl/manager-team-detail/ManagerTeamDetail';

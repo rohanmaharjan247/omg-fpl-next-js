@@ -2,11 +2,12 @@ import {
   HeadTitle,
   ManagerDetail,
   ManagerTeam,
+  ManagerTeamDetail,
   ProfileForm,
 } from '@/components';
 import { useLeagueInfo } from '@/helpers/league-info-context';
 import { UserProfile } from '@/helpers/models';
-import { faQrcode } from '@fortawesome/free-solid-svg-icons';
+import { faPoundSign, faQrcode } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import axios from 'axios';
@@ -97,7 +98,6 @@ const Profile = () => {
               {/* {manager ?  : <ProfileForm user={user} />} */}
               {manager ? (
                 <ManagerDetail
-                  currentGameweek={currentGameweek}
                   favoriteTeamCode={favoriteTeamCode}
                   manager={manager}
                   qr_code_url={profile?.qr_code_url}
@@ -109,14 +109,10 @@ const Profile = () => {
           </div>
         </div>
         <div className="col-span-2">
-          <div className="card">
-            <h1 className="text-center py-2 font-bold text-xl">
-              {currentGameweek?.name} Team
-            </h1>
-            <div>
-              {managerTeam && <ManagerTeam managerTeam={managerTeam} />}
-            </div>
-          </div>
+          <ManagerTeamDetail
+            currentGameweek={currentGameweek}
+            managerTeam={managerTeam}
+          />
         </div>
       </div>
     </>

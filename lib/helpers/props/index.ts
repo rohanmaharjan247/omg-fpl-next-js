@@ -10,3 +10,5 @@ export * from './profile-form-props';
 export * from './manager-detail-props';
 export * from './manager-team-props';
 export * from './player-view-props';
+export * from './qr-code-modal-props';
+export * from './manager-team-detail-props';

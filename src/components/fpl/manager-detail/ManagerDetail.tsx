@@ -1,3 +1,4 @@
+import QRCodeModal from '@/components/ui/modals/QRCodeModal';
 import { poppins } from '@/helpers';
 import { ManagerDetailProps } from '@/helpers/props';
 import { faQrcode } from '@fortawesome/free-solid-svg-icons';
@@ -10,10 +11,12 @@ import { Fragment, useEffect, useState } from 'react';
 const ManagerDetail = ({
   manager,
   favoriteTeamCode,
-  currentGameweek,
   qr_code_url,
 }: ManagerDetailProps) => {
   const supabaseClient = useSupabaseClient();
+  const dateFormatter = new Intl.DateTimeFormat('en-US', {
+    dateStyle: 'medium',
+  });
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [qrCodeUrl, setQrCodeUrl] = useState<string>('');
 
@@ -70,8 +73,8 @@ const ManagerDetail = ({
             <h3>{manager?.summary_overall_points}</h3>
           </div>
           <div className="text-center text-sm">
-            <h2 className="font-bold">{currentGameweek?.name} Points</h2>
-            <h3>{manager?.summary_event_points}</h3>
+            <h2 className="font-bold">Joined Date</h2>
+            <h3>{dateFormatter.format(new Date(manager?.joined_time))}</h3>
           </div>
           <div className="text-center text-sm">
             <h2 className="font-bold">Overall Rank</h2>
@@ -79,51 +82,12 @@ const ManagerDetail = ({
           </div>
         </div>
       </div>
-      <Transition show={openModal} as={Fragment}>
-        <Dialog
-          open={openModal}
-          onClose={() => setOpenModal(false)}
-          className={`${poppins.variable} font-sans relative z-50`}
-        >
-          <Transition.Child
-            enterFrom="transform scale-95 opacity-0"
-            enterTo="transform scale-100 opacity-100"
-            leave="transition duration-75 ease-out"
-            leaveFrom="transform scale-100 opacity-100"
-            leaveTo="transform scale-95 opacity-0"
-            as={Fragment}
-          >
-            <div className="fixed inset-0 bg-black/30" aria-hidden="true"></div>
-          </Transition.Child>
-          <div className="fixed inset-0 flex items-center justify-center p-4">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <Dialog.Panel className="w-full max-w-md rounded bg-white py-4 px-2">
-                <Dialog.Title className="font-bold text-xl text-center">
-                  {manager?.name}
-                </Dialog.Title>
-                <Dialog.Description className="text-center font-light">
-                  {manager?.player_first_name} {manager?.player_last_name}
-                </Dialog.Description>
-                <div className="relative w-full h-96 my-4">
-                  <Image
-                    src={qrCodeUrl}
-                    alt={manager?.name ?? 'QR Code'}
-                    fill
-                  ></Image>
-                </div>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition>
+      <QRCodeModal
+        manager={manager}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        qrCodeUrl={qrCodeUrl}
+      />
     </>
   );
 };

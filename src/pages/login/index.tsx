@@ -9,7 +9,6 @@ const Login = () => {
     process.env.NODE_ENV === 'production'
       ? 'https://fpl-omg.vercel.app/'
       : 'http://localhost:3000';
-  console.log('environment', process.env.NODE_ENV);
   return (
     <>
       <HeadTitle title="Login" />
