@@ -1,7 +1,12 @@
 import { useLeagueInfo } from '@/helpers/league-info-context';
-import { faCrown } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowUp19,
+  faArrowUpWideShort,
+  faCrown,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+import classNames from 'classnames';
 import { ClassicLeagueEntry } from 'fpl-api';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -37,14 +42,22 @@ const GameweekWinner = () => {
       <h3 className="text-sm font-light capitalize">
         {gameweekWinner?.player_name}
       </h3>
-      {currentGameweek?.finished && (
-        <div className="absolute -top-2 -left-3">
-          <FontAwesomeIcon
-            icon={faCrown}
-            className="text-2xl text-yellow-400 -rotate-45"
-          />
-        </div>
-      )}
+
+      <div
+        className={classNames(
+          'absolute -top-2',
+          currentGameweek?.finished ? '-left-3' : '-left-2'
+        )}
+      >
+        <FontAwesomeIcon
+          icon={currentGameweek?.finished ? faCrown : faArrowUpWideShort}
+          className={classNames(
+            currentGameweek?.finished
+              ? `text-2xl text-yellow-400 -rotate-45`
+              : 'text-xl bg-light-secondary text-slate-100 rounded p-1'
+          )}
+        />
+      </div>
       <div className="absolute -top-2 -right-3 bg-secondary text-slate-100 px-3 py-3 rounded-full font-bold text-center">
         {gameweekWinner?.event_total}
         <div className="font-light text-xs">pts.</div>
