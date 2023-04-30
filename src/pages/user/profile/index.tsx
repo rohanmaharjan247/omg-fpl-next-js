@@ -1,20 +1,16 @@
 import {
   HeadTitle,
   ManagerDetail,
-  ManagerTeam,
   ManagerTeamDetail,
   ProfileForm,
 } from '@/components';
 import { useLeagueInfo } from '@/helpers/league-info-context';
 import { UserProfile } from '@/helpers/models';
-import { faPoundSign, faQrcode } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import axios from 'axios';
 import { Entry, EntryEvent } from 'fpl-api';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 
 const Profile = () => {
   const user = useUser();

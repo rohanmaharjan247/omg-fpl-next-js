@@ -3,6 +3,7 @@ import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { ClassicLeagueEntry } from 'fpl-api';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const GameweekWinner = () => {
@@ -25,7 +26,14 @@ const GameweekWinner = () => {
         {currentGameweek?.name}{' '}
         {currentGameweek?.finished ? 'Winner' : 'In Progress'}
       </h3>
-      <h1 className="header">{gameweekWinner?.entry_name}</h1>
+      <h1 className="header">
+        <Link
+          href={`/manager/${gameweekWinner?.entry}`}
+          className="hover:text-light-primary transition-colors"
+        >
+          {gameweekWinner?.entry_name}
+        </Link>
+      </h1>
       <h3 className="text-sm font-light capitalize">
         {gameweekWinner?.player_name}
       </h3>

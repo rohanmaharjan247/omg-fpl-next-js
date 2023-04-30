@@ -2,6 +2,7 @@ import { LeagueStandingProps } from '@/helpers/props';
 import styles from './styles/LeagueStandingTable.module.css';
 import { ClassicLeagueEntry } from 'fpl-api';
 import { useLeagueInfo } from '@/helpers/league-info-context';
+import Link from 'next/link';
 
 const LeagueStandingTable = ({ leagueStandings }: LeagueStandingProps) => {
   const { currentGameweek } = useLeagueInfo();
@@ -24,7 +25,14 @@ const LeagueStandingTable = ({ leagueStandings }: LeagueStandingProps) => {
           <tr className="border-b" key={leagueStanding.id}>
             <td className="text-center">{leagueStanding.rank}</td>
             <td>
-              <h2 className="font-bold">{leagueStanding.entry_name}</h2>
+              <h2 className="font-bold">
+                <Link
+                  href={`/manager/${leagueStanding.entry}`}
+                  className="hover:text-light-primary transition-colors"
+                >
+                  {leagueStanding.entry_name}
+                </Link>
+              </h2>
               <p className="font-light text-sm">{leagueStanding.player_name}</p>
             </td>
             <td className="text-center font-light">
