@@ -83,7 +83,8 @@ const ManagerDetail = ({
         </div>
       </div>
       <QRCodeModal
-        manager={manager}
+        managerName={manager?.name}
+        playerName={`${manager?.player_first_name} ${manager?.player_last_name}`}
         openModal={openModal}
         setOpenModal={setOpenModal}
         qrCodeUrl={qrCodeUrl}

@@ -7,7 +7,8 @@ import { QRCodeModalProps } from '@/helpers/props';
 const QRCodeModal = ({
   openModal,
   setOpenModal,
-  manager,
+  managerName,
+  playerName,
   qrCodeUrl,
 }: QRCodeModalProps) => {
   return (
@@ -39,15 +40,15 @@ const QRCodeModal = ({
           >
             <Dialog.Panel className="w-full max-w-md rounded bg-white py-4 px-2">
               <Dialog.Title className="font-bold text-xl text-center">
-                {manager?.name}
+                {managerName}
               </Dialog.Title>
               <Dialog.Description className="text-center font-light">
-                {manager?.player_first_name} {manager?.player_last_name}
+                {playerName}
               </Dialog.Description>
               <div className="relative w-full h-96 my-4">
                 <Image
                   src={qrCodeUrl}
-                  alt={manager?.name ?? 'QR Code'}
+                  alt={managerName ?? 'QR Code'}
                   fill
                 ></Image>
               </div>
