@@ -5,7 +5,7 @@ const H2HMatchesGrid = ({ h2hMatches }: H2HMatchesProps) => {
   return (
     <>
       <div className="flex items-center justify-between gap-4">
-        <div className="grow">
+        <div className="grow text-right">
           <h1 className="font-bold text-sm">
             <Link
               href={`/manager/${h2hMatches.entry_1_entry}`}
