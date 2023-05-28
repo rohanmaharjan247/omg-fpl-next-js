@@ -23,7 +23,6 @@ export default function Home() {
     <>
       <HeadTitle title="Home" />
       <div className="my-4">
-        <CurrentGameweek />
         <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
           <div className="col-span-3">
             <LeagueStandings />

@@ -8,7 +8,7 @@ const LeagueStandings = () => {
   const [leagueStanding, setLeagueStanding] = useState<ClassicLeagueEntry[]>(
     []
   );
-  const { leagueInfo } = useLeagueInfo();
+  const { leagueInfo, currentGameweek } = useLeagueInfo();
 
   useEffect(() => {
     const fetchLeagueStandings = async () => {
@@ -24,7 +24,7 @@ const LeagueStandings = () => {
 
   return (
     <div className="card">
-      <h1 className="header">{leagueInfo?.name} Standings</h1>
+      <h1 className="text-2xl font-bold">{currentGameweek?.name} Standings</h1>
       <LeagueStandingTable leagueStandings={leagueStanding} />
     </div>
   );
