@@ -1,11 +1,9 @@
 import { LayoutProps } from '@/helpers/props';
 import Navbar from '../navbar/Navbar';
-import { Poppins } from 'next/font/google';
 import { LeagueInfoContext } from '@/helpers/league-info-context';
 import { useEffect, useState } from 'react';
 import { Bootstrap, ClassicLeagueInfo, Event } from 'fpl-api';
 import axios from 'axios';
-import { useRouter } from 'next/router';
 import { poppins } from '@/helpers';
 
 const Layout = ({ children }: LayoutProps) => {
@@ -38,7 +36,7 @@ const Layout = ({ children }: LayoutProps) => {
     >
       <div className={`${poppins.variable} font-sans`}>
         <Navbar />
-        <main className="container mx-auto">{children}</main>
+        <main className="container mx-auto md:px-4">{children}</main>
       </div>
     </LeagueInfoContext.Provider>
   );

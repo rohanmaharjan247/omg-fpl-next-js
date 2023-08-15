@@ -10,7 +10,7 @@ import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import axios from 'axios';
 import { Entry, EntryEvent } from 'fpl-api';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const Profile = () => {
   const user = useUser();
@@ -24,7 +24,7 @@ const Profile = () => {
   const [managerTeam, setManagerTeam] = useState<EntryEvent>();
   const [favoriteTeamCode, setFavoriteTeamCode] = useState<number>();
 
-  const getUserData = async () => {
+  const getUserData = useCallback(async () => {
     const { data, error } = await supabaseClient
       .from('user_profile')
       .select<'*', UserProfile>()
@@ -36,7 +36,7 @@ const Profile = () => {
     }
 
     setProfile(data);
-  };
+  }, [supabaseClient]);
   const fetchUserProfile = async (profile: UserProfile) => {
     const { data: manager } = await axios.get<Entry>('/api/manager-detail', {
       params: { entry: profile.entry_code },
@@ -65,17 +65,17 @@ const Profile = () => {
 
   useEffect(() => {
     getUserData();
-  }, []);
+  }, [getUserData]);
 
   useEffect(() => {
-    if (!user) {
-      router.push('/login');
-    }
+    // if (!user) {
+    //   router.push('/login');
+    // }
     if (profile) {
       fetchUserProfile(profile);
       fetchUserTeam(profile);
     }
-  }, [user, profile]);
+  }, [profile]);
 
   if (!user) {
     return;
@@ -91,15 +91,13 @@ const Profile = () => {
             <h3 className="font-light">{userData?.email}</h3>
             <div className="h-1 bg-gray-400 w-full my-4 rounded"></div>
             <div>
-              {/* {manager ?  : <ProfileForm user={user} />} */}
-              {manager ? (
+              <ProfileForm user={user} getUserData={getUserData} />
+              {manager && (
                 <ManagerDetail
                   favoriteTeamCode={favoriteTeamCode}
                   manager={manager}
                   qr_code_url={profile?.qr_code_url}
                 />
-              ) : (
-                <ProfileForm user={user} />
               )}
             </div>
           </div>

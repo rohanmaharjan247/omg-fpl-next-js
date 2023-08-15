@@ -38,7 +38,7 @@ const Navbar = () => {
                   {user.user_metadata.name}
                 </Menu.Button>
                 <Menu.Items
-                  className={`absolute right-0 block bg-slate-100 text-slate-800 rounded-md px-6 py-4 w-56 mt-2`}
+                  className={`absolute right-0 z-20 block bg-slate-100 text-slate-800 rounded-md px-6 py-4 w-56 mt-2`}
                 >
                   <Menu.Item>
                     <Link
